@@ -1,8 +1,14 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native'
 
+interface ButtonProps{
+  label: string, 
+  onPress: any, 
+  onLongPress?: any,
+  style: any
+}
 
-export function CustomButton({ label, onPress, onLongPress ,style}) {
+export function CustomButton({ label, onPress, onLongPress ,style}: ButtonProps) {
   return (
     <TouchableOpacity 
     style={style}

@@ -1,6 +1,7 @@
 import { TextInput, SafeAreaView, View, StyleSheet, Text } from "react-native"
 import { AntDesign } from '@expo/vector-icons';
 import { CustomButton } from "../Components/Button/button"
+import React from "react";
 
 
 export const ViewCadastro = () => {
@@ -8,6 +9,7 @@ export const ViewCadastro = () => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.forms}>
+          
                 <AntDesign name="adduser" size={56} color="#9333ea" />
 
                 <Text
@@ -51,8 +53,7 @@ export const ViewCadastro = () => {
                 <CustomButton
                     label="Entrar"
                     onPress={() => console.log('clicou')}
-                    style={styles.button}
-                />
+                    style={styles.button} onLongPress={undefined}                />
             </View>
         </SafeAreaView>
     )

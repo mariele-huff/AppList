@@ -1,16 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet} from 'react-native';
 import * as Animatable from 'react-native-animatable'
 import LottieView from 'lottie-react-native';
 import { CustomButton } from '../Components/Button/button';
 
 
+
 export function ViewMenu(props) {
+
   return (
     <Animatable.View
       style={styles.container}
     >
-
 
 
 <LottieView
@@ -28,8 +29,7 @@ export function ViewMenu(props) {
       <CustomButton
         style={styles.button}
         label={"Anotar tarefas"}
-        onPress={() => props.navigation.navigate("ViewTarefas")}
-      />
+        onPress={() => props.navigation.navigate("ViewTarefas")} onLongPress={undefined}      />
     </Animatable.View>
   )
 }

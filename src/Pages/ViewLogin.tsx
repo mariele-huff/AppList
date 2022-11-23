@@ -1,17 +1,48 @@
 import { useState } from "react"
-import { SafeAreaView, TextInput, View, StyleSheet, Text } from "react-native"
+import { SafeAreaView, TextInput, StyleSheet, Text, Alert, KeyboardAvoidingView, Platform } from "react-native"
 import {CustomButton} from "../Components/Button/button"
 import { AntDesign } from '@expo/vector-icons'; 
+import React from "react";
+const base64 = require('base-64');
+
+export const ViewLogin = (props:any) => {
+    
+
+    const [usuario, setUsuario] = useState("")
+    const [senha, setSenha] = useState("")
 
 
-export const ViewLogin = (props) => {
+  async  function verificação (login: any) {
+        
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+        if(login.email === usuario){
+            props.navigation.navigate("ViewMenu")
+        }
+        else(
+            Alert.alert('Email ou senha incorretos!')
+           
+        ) 
+        setUsuario("")
+        setSenha("")
+    }
 
+    async function Login () {
+        console.log(usuario, senha)
+        const response = await fetch('http://177.44.248.30:3333/auth',{
+            method: 'POST',
+            headers: {
+                'Authorization': 'Basic ' + base64.encode(`${usuario}:${senha}`)
+            }
+
+        })
+        const json = await response.json()
+        verificação(json)
+
+    }
     return(
         <SafeAreaView style={styles.container}>
-            <View
+            <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios'?'padding':"height"}
              style={styles.formLogin}
             >
                 <AntDesign name="login" size={64} color="#9333ea" />
@@ -30,8 +61,11 @@ export const ViewLogin = (props) => {
                style={styles.input}
                placeholder="E-mail"
                textContentType="emailAddress"
+               value={usuario}
+               onChangeText={(value) => setUsuario(value)}
                placeholderTextColor={'#7C7C8A'}
-               onValueChange
+            
+               
 
                >
 
@@ -41,16 +75,18 @@ export const ViewLogin = (props) => {
                secureTextEntry={true}
                textContentType="password"
                placeholder="Senha"
+               value={senha}
+               onChangeText={(value) => setSenha(value)}
                placeholderTextColor={'#7C7C8A'}
                >
                 
                </TextInput>
                
                <CustomButton
-               label="Entrar"
-               onPress={() => props.navigation.navigate("ViewMenu")}
-               style={styles.button}
-               />
+                    label="Entrar"
+                    // onPress={() => props.navigation.navigate("ViewMenu")}
+                    onPress={Login}
+                    style={styles.button}               />
                 <Text
                 style={{fontSize:16, color:'#7C7C8A', marginBottom:16}}
                 onPress={() => props.navigation.navigate("ViewCadastro")}
@@ -58,7 +94,7 @@ export const ViewLogin = (props) => {
                     Cadastrar-se
                 </Text>
 
-            </View>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     )
 }

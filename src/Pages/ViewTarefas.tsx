@@ -7,22 +7,15 @@ import Checkbox from 'expo-checkbox'
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons'; 
 
-
-
-
 import { CustomButton } from '../Components/Button/button';
-
-
 
 export function ViewTarefas() {
 
-    const [taskList, setTaskList] = useState([])
-
+    const [taskList, setTaskList] = useState<any>([])
     const [task, setTask] = useState('')
 
 
     useEffect(() => {
-
         const getData = async () => {
             try {
                 const value = await AsyncStorage.getItem('@tasklist')
@@ -30,16 +23,19 @@ export function ViewTarefas() {
                     setTaskList(JSON.parse(value));
                 }
             } catch (e) {
-                // error reading value
+                console.log('Erro:' + e)
             }
         }
         getData()
 
+
     }, [])
 
-    const setData= async (data) => {
 
-     await AsyncStorage.setItem('@tasklist', JSON.stringify(data)); 
+    
+
+    const setData= async (data:any) => {
+    await AsyncStorage.setItem('@tasklist', JSON.stringify(data)); 
 
     }
 
@@ -68,7 +64,7 @@ export function ViewTarefas() {
     }
 
 
-    const deleteTesk = (id) => {
+    const deleteTesk = (id:number) => {
         Alert.alert('Atenção', 'Deseja mesmo excluir a tarefa?', [{
             text: "sim",
 
@@ -105,7 +101,7 @@ export function ViewTarefas() {
 
     // }
 
-    const handleCheckTask = async (id) => {
+    const handleCheckTask = async (id:number) => {
 
 
         const newTaskList = taskList.map(item => {
@@ -141,8 +137,7 @@ export function ViewTarefas() {
             <CustomButton
                 style={styles.button}
                 label='salvar'
-                onPress={() => atualizaLista()}
-            />
+                onPress={() => atualizaLista()} onLongPress={undefined}            />
 
 
             {
@@ -190,7 +185,7 @@ export function ViewTarefas() {
                             source={require('../Assets/animations/listaVazia.json')}
                         />
 
-                        <Text style={{ color: '#fff', fontsize: 24, }}>A lista está vazia</Text>
+                        <Text style={{ color: '#fff'}}>A lista está vazia</Text>
 
                     </View>
                     }
