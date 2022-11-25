@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet} from 'react-native';
 import * as Animatable from 'react-native-animatable'
 import LottieView from 'lottie-react-native';
 import { CustomButton } from '../Components/Button/button';
+import { ThemeDark } from '../Styles/themeDark';
 
 
 
@@ -10,7 +10,7 @@ export function ViewMenu(props) {
 
   return (
     <Animatable.View
-      style={styles.container}
+      style={ThemeDark.containerCentral}
     >
 
 
@@ -27,32 +27,13 @@ export function ViewMenu(props) {
 />
 
       <CustomButton
-        style={styles.button}
+        tamanho='small'
         label={"Anotar tarefas"}
-        onPress={() => props.navigation.navigate("ViewTarefas")} onLongPress={undefined}      />
+        onPress={() => props.navigation.navigate("ViewTarefas")} 
+       />
     </Animatable.View>
   )
 }
 
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#18181b",
-
-
-  },
-  button: {
-    backgroundColor: '#9333ea',
-    borderRadius: 8,
-    justifyContent: "center",
-    height: 50,
-    width: 250,
-    margin: 18
-
-  },
-
-})

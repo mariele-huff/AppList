@@ -1,41 +1,33 @@
+
 import React from "react"
-import { TextInput, View, StyleSheet } from "react-native"
+import { TextInput } from "react-native"
+import { ThemeDark } from "../../Styles/themeDark"
 
 
 interface InputProps {
-    placeholder: string,
-    type:any,
-
+    placeholder?: string,
+    type: any,
+    tamanho: string,
+    value?:string,
+    onChangeText?:any,
+    autoCapitalize?:any,
+    secureTextEntry?: boolean
 }
 
-export const Input = ({placeholder, type}:InputProps) => {
-    return (
-        <>
-            <TextInput
-                style={styles.input}
-                placeholder={placeholder}
-                textContentType={type}
-                placeholderTextColor={'#7C7C8A'}
-
-            />
-        </>
-
-
-
-
-    )
-}
-
-const styles = StyleSheet.create({
-
-    input: {
-        height: 50,
-        width: 200,
-        borderRadius: 8,
-        color: '#7C7C8A',
-        backgroundColor: "#262626",
-        margin: 16,
-        padding: 16
-
-    },
-})
+export const InputCusttom = ({ placeholder, type, tamanho, value, onChangeText, autoCapitalize, secureTextEntry }: InputProps) => {
+ 
+        return (
+            <>
+                <TextInput
+                    style={tamanho==='large'?ThemeDark.inputLarge:ThemeDark.inputSmall}
+                    value={value}
+                    secureTextEntry={secureTextEntry}
+                    onChangeText={onChangeText}
+                    placeholder={placeholder}
+                    autoCapitalize={autoCapitalize}
+                    textContentType={type}
+                    placeholderTextColor="#bebebe"
+                />
+            </>
+        )
+    }

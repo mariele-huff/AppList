@@ -1,14 +1,16 @@
-import { TextInput, SafeAreaView, View, StyleSheet, Text } from "react-native"
+import { SafeAreaView, View, StyleSheet, Text } from "react-native"
 import { AntDesign } from '@expo/vector-icons';
 import { CustomButton } from "../Components/Button/button"
 import React from "react";
+import { InputCusttom } from "../Components/Input/input";
+import { ThemeDark } from "../Styles/themeDark";
 
 
 export const ViewCadastro = () => {
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.forms}>
+        <SafeAreaView style={ThemeDark.containerCentral}>
+            <View style={ThemeDark.forms}>
           
                 <AntDesign name="adduser" size={56} color="#9333ea" />
 
@@ -17,83 +19,44 @@ export const ViewCadastro = () => {
                 >
                     Cadastro
                 </Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Nome Completo"
-                    placeholderTextColor={'#7C7C8A'}
-                >
+                <InputCusttom
+                   tamanho="small"
+                   type="email-address"
+                   placeholder="Nome Completo"
+                    
+               />
 
-                </TextInput>
-                <TextInput
-                    style={styles.input}
+              
+                <InputCusttom
+                    tamanho="small"
+                    type="email-address"
                     placeholder="E-mail"
-                    placeholderTextColor={'#7C7C8A'}
-                >
+                    
+                />
 
-                </TextInput>
-                <TextInput
-                    style={styles.input}
+          
+                <InputCusttom
+                    tamanho="small"
+                    type="password"
                     secureTextEntry={true}
-                    textContentType="password"
                     placeholder="Senha"
-                    placeholderTextColor={'#7C7C8A'}
-                >
+                   
+                />
 
-
-                </TextInput>
-                <TextInput
-                    style={styles.input}
+             <InputCusttom
+                    tamanho="small"
+                    type="password"
                     secureTextEntry={true}
-                    textContentType="password"
                     placeholder="Confirme a sua senha"
-                    placeholderTextColor={'#7C7C8A'}
-                >
+                />
 
-                </TextInput>
                 <CustomButton
                     label="Entrar"
                     onPress={() => console.log('clicou')}
-                    style={styles.button} onLongPress={undefined}                />
+                    tamanho="small"
+                    onLongPress={undefined}                />
             </View>
         </SafeAreaView>
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#18181b",
-
-
-    },
-    forms: {
-        width: 300,
-        height: 400,
-        justifyContent: 'center',
-        alignItems: 'center',
-        // backgroundColor:'#012E40',
-        borderRadius: 16
-
-    },
-    button: {
-        backgroundColor: '#9333ea',
-        borderRadius: 8,
-        justifyContent: "center",
-        height: 50,
-        width: 250,
-        margin: 18
-
-    },
-    input: {
-        height: 50,
-        width: 250,
-        borderRadius: 8,
-        color: '#7C7C8A',
-        backgroundColor: "#262626",
-        margin: 16,
-        padding: 16
-
-    },
-})
